@@ -46,12 +46,15 @@ namespace Task1
         }
         static void Print(Point[] array) //выводим данные на экран
         {
-            foreach (Pyramid temp in array)
+            using (StreamWriter fileout = new StreamWriter("output.txt"))
             {
-                temp.Show();
-                Console.WriteLine("Площадь основания правильной четырехугольной пирамиды: {0:f2}", temp.Square_osn());
-                Console.WriteLine("Объем правильной четырехугольной пирамиды: {0:f2}", temp.V());
-                Console.WriteLine();
+                foreach (Pyramid temp in array)
+                {
+                    temp.Show();
+                    fileout.WriteLine("Площадь основания правильной четырехугольной пирамиды: {0:f2}", temp.Square_osn());
+                    fileout.WriteLine("Объем правильной четырехугольной пирамиды: {0:f2}", temp.V());
+                   
+                }
             }
 
         }
@@ -59,6 +62,7 @@ namespace Task1
         {
             Point[] array = Input();
             Print(array);
+            Console.ReadKey();
         }
     }
 }
